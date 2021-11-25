@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuizCreateRequest;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 
@@ -15,7 +16,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::paginate(5);
+        $quizzes = Quiz::paginate(10);
         return view('admin.quiz.list', compact('quizzes'));
     }
 
@@ -26,7 +27,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return 'Welcom Admin Create Page';
+        return view('admin.quiz.create');
     }
 
     /**
@@ -35,9 +36,10 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuizCreateRequest $request)
     {
-        //
+        Quiz::create($request->post());
+        return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Oluşturuldu.');
     }
 
     /**

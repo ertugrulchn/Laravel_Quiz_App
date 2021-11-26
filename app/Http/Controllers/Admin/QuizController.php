@@ -17,7 +17,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::paginate(10);
+        $quizzes = Quiz::paginate(5);
         return view('admin.quiz.list', compact('quizzes'));
     }
 

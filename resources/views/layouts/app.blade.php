@@ -41,7 +41,7 @@
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger fade show">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -49,7 +49,7 @@
                 @endif
 
                 @if (session('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success fade show">
                         <i class="fa fa-check"></i>
                         {{ session('success') }}
                     </div>

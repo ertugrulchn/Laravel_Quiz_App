@@ -4,7 +4,8 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
-                <a href="{{ route('quizzes.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Quiz
+                <a href="{{ route('quizzes.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                    Quiz
                     Oluştur</a>
             </h5>
             <table class="table table-hover table-bordered">
@@ -23,8 +24,9 @@
                             <td>{{ $quiz->status }}</td>
                             <td>{{ $quiz->finished_at }}</td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-primary btn-sm"><i
+                                        class="fa fa-pen"></i></a>
+                                <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

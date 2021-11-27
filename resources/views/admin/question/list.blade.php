@@ -28,8 +28,11 @@
                             <td>{{ $question->question }}</td>
                             <td>
                                 @if ($question->image)
-                                    <a href="{{ asset($question->image) }}" class="btn btn-light btn-sm" target="_blank"><i
-                                            class="fas fa-external-link-alt"></i> Resimi Görüntüle</a>
+                                    <a href="{{ asset($question->image) }}" class="btn btn-light btn-sm"
+                                        target="_blank"><i class="fas fa-external-link-alt"></i> Fotoğrafı Görüntüle</a>
+                                @else
+                                    <p class="text-danger text-center"><i class="fas fa-exclamation"></i> Fotoğraf Yok
+                                    </p>
                                 @endif
                             </td>
                             <td>{{ $question->answer1 }}</td>
@@ -40,7 +43,7 @@
                             <td>
                                 <a href="{{ route('questions.edit', [$quiz->id, $question->id]) }}"
                                     class="btn btn-primary btn-sm m-1"><i class="fa fa-pen"></i></a>
-                                <a href="{{ route('quizzes.destroy', $question->id) }}"
+                                <a href="{{ route('questions.destroy', [$quiz->id, $question->id]) }}"
                                     class="btn btn-danger btn-sm m-1"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>

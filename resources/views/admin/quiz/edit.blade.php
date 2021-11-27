@@ -7,7 +7,7 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group m-3">
-                    <label class="text-uppercase">Quiz Başlığı <span class="text-danger">*</span></label>
+                    <label class="text-uppercase">Quiz Başlığı</label>
                     <input type="text" name="title" class="form-control" value="{{ $quiz->title }}" />
                 </div>
 
@@ -32,7 +32,6 @@
                         Güncelle</button>
                 </div>
             </form>
-            <p class="text-danger text-right">UYARI: * Sembolü İle Gösterilen Alanlar Zorunludur !</p>
         </div>
     </div>
 

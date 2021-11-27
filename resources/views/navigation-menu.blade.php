@@ -163,6 +163,16 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if (auth()->user()->type == 'admin')
+                <!-- Admin Page -->
+                <div class="block px-4 py-2 text-xs text-gray-400">
+                    {{ __('Admin İşlemleri') }}
+                </div>
+
+                <x-jet-responsive-nav-link href="{{ route('quizzes.index') }}">
+                    {{ __('Quizler') }}
+                </x-jet-responsive-nav-link>
+            @endif
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>

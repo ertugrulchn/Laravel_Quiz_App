@@ -33,7 +33,7 @@
                             <td>{{ $question->answer4 }}</td>
                             <td class="text-success">{{ substr($question->correct_answer, -1) }}. Şık</td>
                             <td>
-                                <a href="{{ route('quizzes.edit', $question->id) }}"
+                                <a href="{{ route('questions.edit', [$quiz->id, $question->id]) }}"
                                     class="btn btn-primary btn-sm m-1"><i class="fa fa-pen"></i></a>
                                 <a href="{{ route('quizzes.destroy', $question->id) }}"
                                     class="btn btn-danger btn-sm m-1"><i class="fas fa-trash-alt"></i></a>

@@ -14,10 +14,12 @@
 
                 <div class="form-group mb-3">
                     <label class="text-uppercase">Fotoğraf</label>
-                    <a href="{{ asset($question->image) }}" target="_blank">
-                        <img src="{{ asset($question->image) }}" class="img-responsive" style="width: 200px"
-                            alt="{{ $question->image }}">
-                    </a>
+                    @if ($question->image)
+                        <a href="{{ asset($question->image) }}" target="_blank">
+                            <img src="{{ asset($question->image) }}" class="img-responsive" style="width: 200px"
+                                alt="{{ $question->question }}">
+                        </a>
+                    @endif
                     <input type="file" name="image" class="form-control mt-3">
                 </div>
 
@@ -66,7 +68,7 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-primary btn-sm btn-block w-100 text-uppercase">Soru
+                    <button type="submit" class="btn btn-primary btn-sm btn-block w-100 text-uppercase">Soruyu
                         Güncelle</button>
                 </div>
             </form>

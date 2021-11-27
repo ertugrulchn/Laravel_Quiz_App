@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('dashboard');
 })->name('dashboard');
 

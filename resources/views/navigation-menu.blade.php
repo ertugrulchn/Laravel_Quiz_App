@@ -13,8 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Ana Sayfa') }}
                     </x-jet-nav-link>
+                    @if (auth()->user()->type == 'admin')
+                        <x-jet-nav-link href="{{ route('quizzes.index') }}" :active="request()->routeIs('quizzes.index')">
+                            {{ __('Quizler') }}
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -106,20 +111,20 @@
                             @if (auth()->user()->type == 'admin')
                                 <!-- Admin Page -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Admin İşlemleri') }}
+                                    Admin İşlemleri
                                 </div>
 
                                 <x-jet-dropdown-link href="{{ route('quizzes.index') }}">
-                                    {{ __('Quizler') }}
+                                    Quizler
                                 </x-jet-dropdown-link>
                             @endif
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                Hesabını Yönet
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                Profil
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -136,7 +141,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    Çıkış Yap
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -166,15 +171,15 @@
             @if (auth()->user()->type == 'admin')
                 <!-- Admin Page -->
                 <div class="block px-4 py-2 text-xs text-gray-400">
-                    {{ __('Admin İşlemleri') }}
+                    Admin İşlemleri
                 </div>
 
                 <x-jet-responsive-nav-link href="{{ route('quizzes.index') }}">
-                    {{ __('Quizler') }}
+                    Quizler
                 </x-jet-responsive-nav-link>
             @endif
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                Ana Sayfa
             </x-jet-responsive-nav-link>
         </div>
 

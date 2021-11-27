@@ -24,9 +24,12 @@
                             <td>{{ $quiz->status }}</td>
                             <td>{{ $quiz->finished_at }}</td>
                             <td>
+                                <a href="{{ route('questions.index', $quiz->id) }}" class="btn btn-warning btn-sm"><i
+                                        class="fa fa-question"></i></a>
                                 <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-primary btn-sm"><i
                                         class="fa fa-pen"></i></a>
-                                <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-danger btn-sm"><i
+                                        class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

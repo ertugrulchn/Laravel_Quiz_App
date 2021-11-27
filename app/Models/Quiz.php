@@ -4,9 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quiz extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'description', 'finished_at'];
+
+    public function questions()
+    {
+        return $this->HasMany('App\Models\Question');
+    }
 }

@@ -3,7 +3,9 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">
+            <h5 class="card-title float-right">
+                <a href="{{ route('quizzes.index') }}" class="btn btn-dark btn-sm"><i class="fa fa-arrow-left"></i> Geri
+                    Dön</a>
                 <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-primary btn-sm"><i
                         class="fa fa-plus"></i>
                     Soru

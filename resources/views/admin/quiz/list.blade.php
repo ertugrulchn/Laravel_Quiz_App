@@ -3,11 +3,30 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">
+            <h5 class="card-title" style="float: right">
                 <a href="{{ route('quizzes.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
                     Quiz
                     Oluştur</a>
             </h5>
+            <form method="GET" action="" class="row mb-4">
+                <div class="col-md-2">
+                    <input type="text" name="title" value="{{ request()->get('title') }}" placeholder="Quiz Adı"
+                        class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <select name="status" onchange="this.form.submit()" class="form-control">
+                        <option value="">Durum Seçiniz</option>
+                        <option @if (request()->get('status') == 'publish') selected @endif value="publish">Aktif</option>
+                        <option @if (request()->get('status') == 'passive') selected @endif value="passive">Pasif</option>
+                        <option @if (request()->get('status') == 'draft') selected @endif value="draft">Taslak</option>
+                    </select>
+                </div>
+                @if (request()->get('title') || request()->get('status'))
+                    <div class="col-md-2">
+                        <a href="{{ route('quizzes.index') }}" class="btn btn-secondary">Sıfırla</a>
+                    </div>
+                @endif
+            </form>
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
@@ -55,7 +74,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $quizzes->links() }}
+            {{ $quizzes->withQueryString()->links() }}
         </div>
     </div>
 </x-app-layout>

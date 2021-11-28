@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', [MainController::class, 'dashboard'])->name('dashboard');
     Route::get('quiz/detay/{slug}', [MainController::class, 'quiz_detail'])->name('quiz.detail');
+    Route::get('quiz/{slug}', [MainController::class, 'quiz'])->name('quiz.join');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], function () {

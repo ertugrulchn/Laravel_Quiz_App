@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Quiz extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'finished_at'];
+    use Sluggable;
+
+    protected $fillable = ['title', 'description', 'finished_at', 'slug', 'status'];
 
     protected $dates = ['finished_at'];
 
@@ -22,5 +25,15 @@ class Quiz extends Model
     public function questions()
     {
         return $this->HasMany('App\Models\Question');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'onUpdate' => true,
+                'source' => 'title'
+            ]
+        ];
     }
 }

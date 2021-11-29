@@ -11,7 +11,13 @@ class Result extends Model
 
     protected $fillable = ['user_id', 'quiz_id', 'point', 'correct', 'wrong'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function quiz()
+    {
+        return $this->belongsTo('App\Models\Quiz');
     }
 }

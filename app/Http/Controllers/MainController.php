@@ -17,13 +17,16 @@ class MainController extends Controller
 
     public function quiz($slug)
     {
-        $quiz = Quiz::whereSlug($slug)->with('questions')->first() ?? abort(404, 'Quiz Bulunamadı');
+        $quiz = Quiz::whereSlug($slug)->with('questions.my_answer', 'my_result')->first() ?? abort(404, 'Quiz Bulunamadı');
+        if ($quiz->my_result) {
+            return view('quiz_result', compact('quiz'));
+        }
         return view('quiz', compact('quiz'));
     }
 
     public function quiz_detail($slug)
     {
-        $quiz = Quiz::whereSlug($slug)->with('my_result', 'results')->withCount('questions')->first() ?? abort(404, 'Quiz Bulunamadı');
+        $quiz = Quiz::whereSlug($slug)->with('my_result', 'topTen.user')->withCount('questions')->first() ?? abort(404, 'Quiz Bulunamadı');
         return view('quiz_detail', compact('quiz'));
     }
 

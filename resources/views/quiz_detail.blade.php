@@ -7,6 +7,21 @@
             <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
+                        @if ($quiz->my_result)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Puan
+                                <span class="badge bg-primary badge-pill">{{ $quiz->my_result->point }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Doğru / Yanlış Sayısı
+                                <div class="float-right">
+                                    <span class="badge bg-success badge-pill">{{ $quiz->my_result->correct }}
+                                        Doğru</span>
+                                    <span class="badge bg-danger badge-pill">{{ $quiz->my_result->wrong }}
+                                        Yanlış</span>
+                                </div>
+                            </li>
+                        @endif
                         @if ($quiz->finished_at)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Son Katılım Tarihi
@@ -16,23 +31,30 @@
                         @endif
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Soru Sayısı
-                            <span class="badge bg-secondary badge-pill">{{ $quiz->questions_count }}</span>
+                            <span class="badge bg-dark badge-pill">{{ $quiz->questions_count }}</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Katılımcı Sayısı
-                            <span class="badge bg-secondary badge-pill">14</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Ortalama Puan
-                            <span class="badge bg-secondary badge-pill">2</span>
-                        </li>
+                        @if ($quiz->details !== null)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Katılımcı Sayısı
+                                <span class="badge bg-dark badge-pill">{{ $quiz->details['join_count'] }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Ortalama Puan
+                                <span class="badge bg-dark badge-pill">{{ $quiz->details['average'] }}</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="col-md-8">
                     {{ $quiz->description }}
-                    <a href="{{ route('quiz.join', $quiz->slug) }}"
-                        class="btn btn-primary btn-block w-100 mt-3">Quiz'e
-                        Katıl</a>
+                    @if ($quiz->my_result)
+                        <a href="{{ route('quiz.join', $quiz->slug) }}"
+                            class="btn btn-success btn-block w-100 mt-3">Quiz'i Görüntüle</a>
+                    @else
+                        <a href="{{ route('quiz.join', $quiz->slug) }}"
+                            class="btn btn-primary btn-block w-100 mt-3">Quiz'e
+                            Katıl</a>
+                    @endif
                 </div>
             </div>
             </p>
